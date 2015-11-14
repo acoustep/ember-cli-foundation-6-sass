@@ -20,7 +20,8 @@ http://foundation.zurb.com/sites-6-docs/
 ## Installation
 
 ```
-ember install:npm ember-cli-foundation-6-sass
+npm install --save-dev ember-cli-sass
+ember install ember-cli-foundation-6-sass
 ```
 
 ## To do
