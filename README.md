@@ -1,7 +1,5 @@
 # Ember CLI Foundation 6 SASS
 
-_This addon is in development and so is Foundation 6. Use at your own risk!_
-
 ## Getting Started
 
 Run the generator to install the dependencies
@@ -19,7 +17,7 @@ Then, either let the generator add the `app.scss` file, or include the following
 
 See Foundation 6 documentation for details.
 
-http://foundation.zurb.com/sites-6-docs/
+http://foundation.zurb.com/sites/docs/
 
 ## Installation
 
