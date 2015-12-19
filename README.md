@@ -4,9 +4,13 @@ _This addon is in development and so is Foundation 6. Use at your own risk!_
 
 ## Getting Started
 
-Rename ```app/stylesheets/app.css``` to ```app/stylesheets/app.scss```.
+Run the generator to install the dependencies
 
-Add foundation!
+```bash
+ember g ember-cli-foundation-6-sass
+```
+
+Then, either let the generator add the `app.scss` file, or include the following in your existing one:
 
 ```
 @import 'foundation';
@@ -22,6 +26,7 @@ http://foundation.zurb.com/sites-6-docs/
 ```
 npm install --save-dev ember-cli-sass
 ember install ember-cli-foundation-6-sass
+ember g ember-cli-foundation-6-sass
 ```
 
 ## To do
