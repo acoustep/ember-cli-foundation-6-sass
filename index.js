@@ -6,6 +6,7 @@ module.exports = {
   name: 'ember-cli-foundation-6-sass',
   included: function included(app) {
     this._super.included(app);
+    var options = app.options['ember-cli-foundation-6-sass'];
 
     var foundationPath = path.join(app.bowerDirectory, 'foundation-sites', 'scss');
     app.options.sassOptions = app.options.sassOptions || {};
@@ -13,10 +14,10 @@ module.exports = {
     app.options.sassOptions.includePaths.push(foundationPath);
 
     // Include the js paths
-    if (app.options.foundationJs) {
-      if ((typeof app.options.foundationJs == 'string') ||
-          (app.options.foundationJs instanceof String)) {
-        if (app.options.foundationJs === 'all') {
+    if (options && options.foundationJs) {
+      if ((typeof options.foundationJs == 'string') ||
+          (options.foundationJs instanceof String)) {
+        if (options.foundationJs === 'all') {
           app.import(path.join(app.bowerDirectory, 'foundation-sites', 'dist', 'foundation.js'));
         }
       }
