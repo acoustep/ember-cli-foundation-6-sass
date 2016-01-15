@@ -71,7 +71,7 @@ export default Ember.Component.extend({
 {{yield}}
 ```
 
-Use the component block with any Foundation Javascript code
+Place the component block inside of application.hbs or with any Foundation Javascript code.
 
 ```hbs
 {{!-- Example Foundation accordion menu --}}
