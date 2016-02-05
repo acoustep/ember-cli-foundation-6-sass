@@ -1,10 +1,16 @@
-
-<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
-  <button class="menu-icon" type="button" data-toggle></button>
-  <div class="title-bar-title">Menu</div>
+<!-- Title Bar -->
+<div class="title-bar">
+  <div class="title-bar-left">
+    <button class="menu-icon" type="button"></button>
+    <span class="title-bar-title">Ember Foundation 6 SASS</span>
+  </div>
+  <div class="title-bar-right">
+    <button class="menu-icon" type="button"></button>
+  </div>
 </div>
 
-<div class="top-bar" id="example-menu">
+<!-- Top Bar -->
+<div class="top-bar">
   <div class="top-bar-left">
     <ul class="dropdown menu" data-dropdown-menu>
       <li class="menu-text">Site Title</li>
@@ -27,6 +33,24 @@
     </ul>
   </div>
 </div>
+
+<div class="row">
+  <div class="small-12 large-expand columns">
+    <h2>Reveal</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse aliquid, optio ab!</p>
+    <p><a data-open="exampleModal">Click me for a modal</a></p>
+    {{#zf-reveal id="exampleModal" overlay=showDialogOverlay}}
+      <h1>Awesome. I Have It.</h1>
+      <p class="lead">Your couch. It is mine.</p>
+      <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
+      <button class="close-button" data-close aria-label="Close reveal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    {{/zf-reveal}}
+    <p>{{input type="checkbox" name="showDialogOverlay" checked=showDialogOverlay}} Show Overlay</p>
+  </div>
+</div>
+
 <div class="row">
   <div class="small-12 large-expand columns"><h2 id="title">Welcome to Ember</h2></div>
 </div>
@@ -34,33 +58,5 @@
   <div class="small-12 columns">
 
     {{outlet}}
-    {{#app-canvas}}
-      <ul class="vertical menu" data-accordion-menu>
-        <li>
-          <a href="#">Item 1</a>
-          <ul class="menu vertical nested is-active">
-            <li>
-              <a href="#">Item 1A</a>
-              <ul class="menu vertical nested">
-                <li><a href="#">Item 1Ai</a></li>
-                <li><a href="#">Item 1Aii</a></li>
-                <li><a href="#">Item 1Aiii</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Item 1B</a></li>
-            <li><a href="#">Item 1C</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">Item 2</a>
-          <ul class="menu vertical nested">
-            <li><a href="#">Item 2A</a></li>
-            <li><a href="#">Item 2B</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Item 3</a></li>
-      </ul>
-    {{/app-canvas}}
   </div>
 </div>
-
