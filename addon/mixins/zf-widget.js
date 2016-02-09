@@ -22,6 +22,11 @@ export default Ember.Mixin.create({
       let zfType = this.get('zfType');
       let ui = new Foundation[zfType](this.$(), options);
       this.set('zfUi', ui);
+
+      // Perform any custom handling
+      if (Ember.isPresent(this.handleInsert)) {
+        this.handleInsert();
+      }
     });
   }),
 

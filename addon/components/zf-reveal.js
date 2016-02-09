@@ -20,28 +20,11 @@ export default Ember.Component.extend(zfWidget, {
                 'vOffset', 'hOffset', 'fullScreen', 'btmOffsetPct', 'overlay', 'resetOnClose',
                 'deepLink'],
 
-  /**
-   * Show dialog
-   */
-  show() {
-    this.get('zfUi').show();
-  },
-
-
 
   /**
-   * Hide dialog
+   * Handle any configuration after the widget has been inserted.
    */
-  close() {
-    this.get('zfUi').close();
-  },
-
-
-
-  /**
-   * Toggle state of dialog
-   */
-  toggle() {
-    this.get('zfUi').toggle();
+  handleInsert() {
+    this.$().css("outline", "none");
   }
 });
