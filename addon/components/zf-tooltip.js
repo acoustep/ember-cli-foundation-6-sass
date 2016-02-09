@@ -29,6 +29,6 @@ export default Ember.Component.extend(zfWidget, {
 
   /** @member Foundation specific options */
   'zfOptions': ['hoverDelay', 'fadeInDuration', 'fadeOutDuration', 'disableHover',
-                'templateClasses', 'tooltipClass', 'triggerClass', 'showOn',
+                'templateClasses', 'tooltipClass', 'triggerClass', 'showOn', 'zf-template',
                 'tipText', 'clickOpen', 'positionClass', 'vOffset', 'hOffset']
 });

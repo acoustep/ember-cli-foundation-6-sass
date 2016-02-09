@@ -61,17 +61,18 @@ export default Ember.Mixin.create({
     // We are going to be observing changes. Initialze our cached observer list
     this._observers = this._observers || {};
 
-    let observer = function(sender, key, val) {
+    let observer = function(sender, key) {
       // Update options dynamically
       let value = sender.get(key);
       let ui = sender.get('zfUi');
-      ui.options[key] = value;
+      ui.options[this._getZfOpKey(key)] = value;
     };
 
     // Each component can specify a list of options that will be exposed to an external
     // consumer. Iterate through the options and build up the options object that gets returned
     for (var opKey of fdnOptions) {
-      options[opKey] = this.get(opKey);
+      let zfOpKey = this._getZfOpKey(opKey);
+      options[zfOpKey] = this.get(opKey);
 
       // We also want to observe any changes so observe each component and push any updates
       // to foundation.
@@ -83,5 +84,24 @@ export default Ember.Mixin.create({
     }
 
     return options;
+  },
+
+
+
+  /**
+   * Get a "Zurb Foundation" specific options key. In some cases, ZF overloads existing ember
+   * component fields. We handle this by prefacing the options with "zf-". So layout (used by
+   * Ember) becomes "zf-layout".
+   * @param  {string} opKey Options key.
+   * @return {string}       Zurb foundation specific options key.
+   */
+  _getZfOpKey(opKey) {
+    let retVal = opKey;
+    let zfPreamble = 'zf-';
+    if (true === opKey.startsWith(zfPreamble)) {
+      retVal = opKey.substring(zfPreamble.length);
+    }
+
+    return retVal;
   }
 });
