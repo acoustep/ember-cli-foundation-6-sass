@@ -1,62 +1,314 @@
-<!-- Title Bar -->
-<div class="title-bar">
-  <div class="title-bar-left">
-    <button class="menu-icon" type="button"></button>
-    <span class="title-bar-title">Ember Foundation 6 SASS</span>
+{{#zf-off-canvas}}
+  <div class="off-canvas position-left" id="offCanvas" data-off-canvas>
+    <p>Example off canvas content</p>
   </div>
-  <div class="title-bar-right">
-    <button class="menu-icon" type="button"></button>
-  </div>
-</div>
+  <div class="off-canvas-content" data-off-canvas-content>
 
-<!-- Top Bar -->
-<div class="top-bar">
-  <div class="top-bar-left">
-    <ul class="dropdown menu" data-dropdown-menu>
-      <li class="menu-text">Site Title</li>
-      <li class="has-submenu">
-        <a href="#">One</a>
-        <ul class="submenu menu vertical" data-submenu>
-          <li><a href="#">One</a></li>
-          <li><a href="#">Two</a></li>
-          <li><a href="#">Three</a></li>
+
+  <!-- Title Bar -->
+  <div class="title-bar">
+    <div class="title-bar-left">
+      <button class="menu-icon" type="button"></button>
+      <span class="title-bar-title">Ember Foundation 6 SASS</span>
+    </div>
+    <div class="title-bar-right">
+      <button class="menu-icon" type="button"></button>
+    </div>
+  </div>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="top-bar-left">
+      {{#zf-dropdown-menu}}
+        <li class="menu-text">Site Title</li>
+        <li class="has-submenu">
+          <a href="#">One</a>
+          <ul class="submenu menu vertical" data-submenu>
+            <li><a href="#">One</a></li>
+            <li><a href="#">Two</a></li>
+            <li><a href="#">Three</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Two</a></li>
+        <li><a href="#">Three</a></li>
+      {{/zf-dropdown-menu}}
+    </div>
+    <div class="top-bar-right">
+      <ul class="menu">
+        <li><input type="search" placeholder="Search"></li>
+        <li><button type="button" class="button">Search</button></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+<!-- Remainder of samples -->
+  <div class="row">
+    <div class="small-12 large-expand columns">
+      <h2>Magellan</h2>
+      {{#zf-magellan}}
+        <li><a href="#reveal">Reveal</a></li>
+        <li><a href="#accordion-menu">Accordion Menu</a></li>
+        <li><a href="#accordion">Accordion</a></li>
+      {{/zf-magellan}}
+    </div>
+  </div>
+
+
+  <div class="row" id="reveal" data-magellan-target="reveal">
+    <div class="small-12 large-expand columns">
+      <h2>Reveal</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse aliquid, optio ab!</p>
+      <p><a data-open="exampleModal">Click me for a modal</a></p>
+      {{#zf-reveal id="exampleModal" overlay=showDialogOverlay}}
+        <h1>Awesome. I Have It.</h1>
+        <p class="lead">Your couch. It is mine.</p>
+        <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
+        <button class="close-button" data-close aria-label="Close reveal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      {{/zf-reveal}}
+      <p>{{input type="checkbox" name="showDialogOverlay" checked=showDialogOverlay}} Show Overlay</p>
+    </div>
+  </div>
+
+
+  <div class="row" id="accordion-menu" data-magellan-target="accordion-menu">
+    <div class="small-4 large-expand columns">
+      <h2>Accordion Menu</h2>
+      {{#zf-accordion-menu}}
+        <li>
+          <a href="#">Item 1</a>
+          <ul class="menu vertical nested">
+            <li><a href="#">Item 1A</a></li>
+            <li><a href="#">Item 1B</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Item 2</a></li>
+      {{/zf-accordion-menu}}
+    </div>
+  </div>
+
+
+  <div class="row" id="accordion" data-magellan-target="accordion">
+    <div class="small-4 large-expand columns">
+      <h2>Accordion</h2>
+      {{#zf-accordion}}
+        <li class="accordion-item is-active" data-accordion-item>
+          <a class="accordion-title">Accordion 1</a>
+          <div class="accordion-content" data-tab-content>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          </div>
+        </li>
+        <li class="accordion-item" data-accordion-item>
+          <a class="accordion-title">Accordion 2</a>
+          <div class="accordion-content" data-tab-content>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse aliquid, optio ab!
+          </div>
+        </li>
+        <li class="accordion-item" data-accordion-item>
+          <a class="accordion-title">Accordion 3</a>
+          <div class="accordion-content" data-tab-content>
+            I would start in the open state, due to using the `is-active` state class.
+          </div>
+        </li>
+      {{/zf-accordion}}
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="small-4 large-expand columns">
+      <h2>Drilldown Menu</h2>
+      {{#zf-drilldown-menu}}
+        <li>
+          <a href="#">Item 1</a>
+          <ul class="vertical menu">
+            <li><a href="#">Item 1A</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Item 2</a></li>
+      {{/zf-drilldown-menu}}
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="small-5 large-expand columns">
+      <h2>Vertical Dropdown Menu</h2>
+      <p>See top bar for a horizontal dropdown</p>
+      {{#zf-dropdown-menu class="vertical"}}
+        <li>
+          <a href="#">Item 1</a>
+          <ul class="menu">
+            <li><a href="#">Item 1A</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Item 2</a></li>
+        <li><a href="#">Item 3</a></li>
+        <li><a href="#">Item 4</a></li>
+      {{/zf-dropdown-menu}}
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="small-4 large-expand columns">
+      <h2>Dropdown</h2>
+      <button class="button" data-toggle="example-dropdown">Toggle Dropdown</button>
+      {{#zf-dropdown id="example-dropdown"}}
+        Example form in a dropdown.
+        <form>
+          <div class="row">
+            <div class="medium-6 columns">
+              <label>Name
+                <input type="text" placeholder="Kirk, James T.">
+              </label>
+            </div>
+            <div class="medium-6 columns">
+              <label>Rank
+                <input type="text" placeholder="Captain">
+              </label>
+            </div>
+          </div>
+        </form>
+      {{/zf-dropdown}}
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="small-12 large-expand columns">
+      <h2>Off-canvas</h2>
+      <p>See the surrounding zf-off-canvas tags for an example.</p>
+      <p>TODO: Needs work</p>
+      <button class="button" data-toggle="off-canvas-left">Left Off-canvas</button>
+      <button class="button" data-toggle="off-canvas-right">Right Off-canvas</button>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="small-12 large-expand columns">
+      <h2>Orbit</h2>
+      {{#zf-orbit nav-buttons=true}}
+        <ul class="orbit-container">
+          <button class="orbit-previous" aria-label="previous"><span class="show-for-sr">Previous Slide</span>&#9664;</button>
+          <button class="orbit-next" aria-label="next"><span class="show-for-sr">Next Slide</span>&#9654;</button>
+          <li class="is-active orbit-slide">
+            <div>
+              <h3 class="text-center">1: You can also throw some text in here!</h3>
+              <p class="text-center">Achieve an animation-free Orbit with the data attribute data-use-m-u-i="false"</p>
+              <h3 class="text-center">This Orbit slider does not use animations.</h3>
+            </div>
+          </li>
+          <li class="orbit-slide">
+            <div>
+              <h3 class="text-center">2: You can also throw some text in here!</h3>
+              <p class="text-center">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Unde harum rem, beatae ipsa consectetur quisquam. Rerum ratione, delectus atque
+                tempore sed, suscipit ullam, beatae distinctio cupiditate ipsam eligendi tempora
+                expedita.
+              </p>
+              <h3 class="text-center">This Orbit slider does not use animations.</h3>
+            </div>
+          </li>
+          <li class="orbit-slide">
+            <div>
+              <h3 class="text-center">3: You can also throw some text in here!</h3>
+              <p class="text-center">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde harum rem,
+                beatae ipsa consectetur quisquam. Rerum ratione, delectus atque tempore sed,
+                suscipit ullam, beatae distinctio cupiditate ipsam eligendi tempora expedita.
+              </p>
+              <h3 class="text-center">This Orbit slider does not use animations.</h3>
+            </div>
+          </li>
+          <li class="orbit-slide">
+            <div>
+              <h3 class="text-center">4: You can also throw some text in here!</h3>
+              <p class="text-center">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Unde harum rem, beatae ipsa consectetur quisquam. Rerum ratione, delectus atque
+                tempore sed, suscipit ullam, beatae distinctio cupiditate ipsam eligendi tempora
+                expedita.
+              </p>
+              <h3 class="text-center">This Orbit slider does not use animations.</h3>
+            </div>
+          </li>
         </ul>
-      </li>
-      <li><a href="#">Two</a></li>
-      <li><a href="#">Three</a></li>
-    </ul>
+        <nav class="orbit-bullets">
+         <button class="is-active" data-slide="0"><span class="show-for-sr">First slide details.</span>
+           <span class="show-for-sr">Current Slide</span></button>
+         <button data-slide="1"><span class="show-for-sr">Second slide details.</span></button>
+         <button data-slide="2"><span class="show-for-sr">Third slide details.</span></button>
+         <button data-slide="3"><span class="show-for-sr">Fourth slide details.</span></button>
+       </nav>
+      {{/zf-orbit}}
+    </div>
   </div>
-  <div class="top-bar-right">
-    <ul class="menu">
-      <li><input type="search" placeholder="Search"></li>
-      <li><button type="button" class="button">Search</button></li>
-    </ul>
-  </div>
-</div>
 
-<div class="row">
-  <div class="small-12 large-expand columns">
-    <h2>Reveal</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse aliquid, optio ab!</p>
-    <p><a data-open="exampleModal">Click me for a modal</a></p>
-    {{#zf-reveal id="exampleModal" overlay=showDialogOverlay}}
-      <h1>Awesome. I Have It.</h1>
-      <p class="lead">Your couch. It is mine.</p>
-      <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
-      <button class="close-button" data-close aria-label="Close reveal" type="button">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    {{/zf-reveal}}
-    <p>{{input type="checkbox" name="showDialogOverlay" checked=showDialogOverlay}} Show Overlay</p>
-  </div>
-</div>
 
-<div class="row">
-  <div class="small-12 large-expand columns"><h2 id="title">Welcome to Ember</h2></div>
-</div>
-<div class="row">
-  <div class="small-12 columns">
-
-    {{outlet}}
+  <div class="row">
+    <div class="small-8 large-expand columns">
+      <h2>Slider</h2>
+      {{#zf-slider}}
+        <span class="slider-handle"  data-slider-handle role="slider" tabindex="1"></span>
+        <span class="slider-fill" data-slider-fill></span>
+        <input type="hidden">
+      {{/zf-slider}}
+    </div>
   </div>
+
+
+  <div class="row">
+    <div class="small-8 large-expand columns">
+      <h2>Tabs</h2>
+      {{#zf-tabs}}
+        <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Tab 1</a></li>
+        <li class="tabs-title"><a href="#panel2">Tab 2</a></li>
+      {{/zf-tabs}}
+      <div class="tabs-content" data-tabs-content="example-tabs">
+        <div class="tabs-panel is-active" id="panel1">
+          <p>
+            Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus
+            ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est
+            bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus.
+          </p>
+        </div>
+        <div class="tabs-panel" id="panel2">
+          <p>
+            Suspendisse dictum feugiat nisl ut dapibus.  Vivamus hendrerit arcu sed erat molestie
+            vehicula. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis
+            nisl tempor.  Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="small-8 large-expand columns">
+      <h2>Tooltip</h2>
+      <p>
+        The {{#zf-tooltip title="Fancy word for a beetle."}}scarabaeus{{/zf-tooltip}} hung quite
+        clear of any branches, and, if allowed to fall, would have fallen at our feet. Legrand
+        immediately took the scythe, and cleared with it a circular space, three or four yards
+        in diameter, just beneath the insect, and, having accomplished this, ordered Jupiter to
+        let go the string and come down from the tree.
+      </p>
+    </div>
+  </div>
+
+
+
+
+
+
+  {{outlet}}
+
 </div>
+{{/zf-off-canvas}}
