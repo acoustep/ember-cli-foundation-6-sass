@@ -1,16 +1,3 @@
 <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
-  {{#if rightCanvas}}
-    <div class="off-canvas position-right" id="off-canvas" data-off-canvas data-position="right">
-      <p>Example off canvas content</p>
-    </div>
-  {{else}}
-    <div class="off-canvas position-left" id="off-canvas" data-off-canvas>
-      <p>Example off canvas content</p>
-    </div>
-  {{/if}}
-
-  <div class="off-canvas-content" data-off-canvas-content>
-
-    {{yield}}
-  </div>
+  {{yield}}
 </div>
