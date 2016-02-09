@@ -1,9 +1,4 @@
 {{#zf-off-canvas}}
-  <div class="off-canvas position-left" id="offCanvas" data-off-canvas>
-    <p>Example off canvas content</p>
-  </div>
-  <div class="off-canvas-content" data-off-canvas-content>
-
 
   <!-- Title Bar -->
   <div class="title-bar">
@@ -182,9 +177,11 @@
     <div class="small-12 large-expand columns">
       <h2>Off-canvas</h2>
       <p>See the surrounding zf-off-canvas tags for an example.</p>
-      <p>TODO: Needs work</p>
-      <button class="button" data-toggle="off-canvas-left">Left Off-canvas</button>
-      <button class="button" data-toggle="off-canvas-right">Right Off-canvas</button>
+      <<p>To have right off-canvas widget, specify:
+         <pre>rightCanvas=true</pre>
+       </p>
+      <p>TODO: Needs some work. Right now, only right or left canvases work.</p>
+      <button class="button" data-toggle="off-canvas">Toggle Off-canvas</button>
     </div>
   </div>
 
@@ -303,6 +300,4 @@
     </div>
   </div>
 
-
-</div>
 {{/zf-off-canvas}}

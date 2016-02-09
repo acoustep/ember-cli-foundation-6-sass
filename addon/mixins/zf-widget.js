@@ -20,7 +20,8 @@ export default Ember.Mixin.create({
 
       // Instantiate widget
       let zfType = this.get('zfType');
-      let ui = new Foundation[zfType](this.$(), options);
+      let controlId = this.get('controlId');
+      let ui = new Foundation[zfType](this.$(controlId), options);
       this.set('zfUi', ui);
 
       // Perform any custom handling

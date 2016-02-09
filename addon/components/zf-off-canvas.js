@@ -19,5 +19,7 @@ export default Ember.Component.extend(zfWidget, {
 
   /** @member Foundation specific options */
   'zfOptions': ['closeOnClick', 'transitionTime', 'position', 'forceTop', 'isRevealed',
-                'revealOn', 'autoFocus', 'revealClass', 'trapFocus']
+                'revealOn', 'autoFocus', 'revealClass', 'trapFocus'],
+
+  'controlId': '#off-canvas'
 });
