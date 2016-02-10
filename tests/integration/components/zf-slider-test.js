@@ -1,27 +1,25 @@
 import { moduleForComponent, test } from 'ember-qunit';
-//import hbs from 'htmlbars-inline-precompile';
+import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('zf-slider', 'Integration | Component | zf slider', {
   integration: true
 });
 
 test('it renders', function(assert) {
-  assert.expect(0);
+  assert.expect(1);
 
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
-  /*
-  this.render(hbs`{{zf-slider}}`);
-
-  assert.equal(this.$().text().trim(), '');
 
   // Template block usage:" + EOL +
   this.render(hbs`
     {{#zf-slider}}
-      template block text
+      <span class="slider-handle"  data-slider-handle role="slider" tabindex="1"></span>
+      <span class="slider-fill" data-slider-fill></span>
+      <input type="hidden">
     {{/zf-slider}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
-  */
+  assert.equal(this.$('.slider-handle').attr('role'), 'slider');
+
 });
