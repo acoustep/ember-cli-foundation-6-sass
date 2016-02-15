@@ -21,5 +21,33 @@ export default Ember.Component.extend(zfWidget, {
   'zfOptions': ['closeOnClick', 'transitionTime', 'position', 'forceTop', 'isRevealed',
                 'revealOn', 'autoFocus', 'revealClass', 'trapFocus'],
 
-  'controlId': '#off-canvas'
+  /** @member Off canvas control ids */
+  'controlIds': null,
+
+  /** @member Off canvas left section flags */
+  offCanvasLeftContent: { isOffCanvasLeft: true },
+
+  /** @member Off canvas right section flags */
+  offCanvasRightContent: { isOffCanvasRight: true },
+
+  /** @member Show left off canvas */
+  showLeftOffCanvas: true,
+
+  /** @member Show right off canvas */
+  showRightOffCanvas: false,
+
+  handlePreRender() {
+    let controlIds = [];
+
+    // Create control ids
+    if (true === this.get('showLeftOffCanvas')) {
+      controlIds.push('#zf-off-canvas-left');
+    }
+    if (true === this.get('showRightOffCanvas')) {
+      controlIds.push('#zf-off-canvas-right');
+    }
+
+    // Set control ids
+    this.set('controlIds', controlIds);
+  }
 });

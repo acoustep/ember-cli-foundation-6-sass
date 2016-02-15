@@ -12,17 +12,41 @@ export default Ember.Mixin.create({
    * Handle setup of this components' DOM element.
    */
   setup: Ember.on('didInsertElement', function() {
+    // Perform any custom handling
+    if (Ember.isPresent(this.handlePreRender)) {
+      this.handlePreRender();
+    }
 
     Ember.run.scheduleOnce('afterRender', () => {
 
       // Adapt the options
       let options = this._adaptOptions();
 
-      // Instantiate widget
+      // Instantiate widget. Some widgets have multiple controls so we handle this case by
+      // creating an array of zfUi elements. The first element gets stuffed into the zfUi
+      // member with the whole list getting stuffed into zfUiList. It's up to the control to
+      // expose this as friendly properties to the user.
       let zfType = this.get('zfType');
-      let controlId = this.get('controlId');
-      let ui = new Foundation[zfType](this.$(controlId), options);
-      this.set('zfUi', ui);
+      let controlIds = this.get('controlIds');
+      let zfUiList = [];
+
+      if (Ember.isPresent(controlIds)) {
+        for (let controlId of controlIds) {
+          let ui = new Foundation[zfType](this.$(controlId), options);
+          zfUiList.push(ui);
+        }
+      }
+
+      if (0 === zfUiList.length) {
+        let ui = new Foundation[zfType](this.$(), options);
+        this.set('zfUi', ui);
+        zfUiList.push(ui);
+      }
+      else {
+        this.set('zfUi', zfUiList[0]);
+      }
+
+      this.set('zfUiList', zfUiList);
 
       // Perform any custom handling
       if (Ember.isPresent(this.handleInsert)) {
@@ -38,19 +62,21 @@ export default Ember.Mixin.create({
    */
   shutdown: Ember.on('willDestoryElement', function() {
     let ui = this.get('zfUi');
-
     if (Ember.isPresent(ui)) {
       let observers = this._observers;
 
       // Nuke any observers that were created
-      for (var opKey in observers) {
+      for (let opKey in observers) {
         if (observers.hasOwnProperty(opKey)) {
           this.removeObserver(opKey, observers[opKey]);
         }
       }
+    }
 
-      // Finally destory everything else.
-      ui.destroy();
+    // Finally destory everything else.
+    let zfUiList = this.get('zfUiList');
+    for (let zfUi of zfUiList) {
+      zfUi.destroy();
     }
   }),
 
@@ -68,10 +94,14 @@ export default Ember.Mixin.create({
     this._observers = this._observers || {};
 
     let observer = function(sender, key) {
-      // Update options dynamically
+      // Update options dynamically. Right now this is an all or nothing for widgets with
+      // multiple UI elements.
       let value = sender.get(key);
-      let ui = sender.get('zfUi');
-      ui.options[this._getZfOpKey(key)] = value;
+      let zfUiList = this.get('zfUiList');
+      for (let zfUi of zfUiList) {
+        zfUi.options[this._getZfOpKey(key)] = value;
+      }
+
     };
 
     // Each component can specify a list of options that will be exposed to an external
