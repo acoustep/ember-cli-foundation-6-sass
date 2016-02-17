@@ -1,3 +1,15 @@
 <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
-  {{yield}}
+  {{#if showLeftOffCanvas}}
+    <div class="off-canvas position-left" id="zf-off-canvas-left" data-off-canvas>
+      {{yield offCanvasLeftContent}}
+    </div>
+  {{/if}}
+  {{#if showRightOffCanvas}}
+    <div class="off-canvas position-right" id="zf-off-canvas-right" data-off-canvas data-position="right">
+      {{yield offCanvasRightContent}}
+    </div>
+  {{/if}}
+  <div class="off-canvas-content" data-off-canvas-content>
+    {{yield}}
+  </div>
 </div>

@@ -5,6 +5,10 @@ module.exports = function(defaults) {
   var app = new EmberAddon(defaults, {
     'ember-cli-foundation-6-sass': {
       'foundationJs': 'all'
+    },
+    babel: {
+      optional: ['es6.spec.symbols'],
+      includePolyfill: true
     }
   });
 

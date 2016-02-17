@@ -1,27 +1,38 @@
 import { moduleForComponent, test } from 'ember-qunit';
-//import hbs from 'htmlbars-inline-precompile';
+import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('zf-dropdown', 'Integration | Component | zf dropdown', {
   integration: true
 });
 
 test('it renders', function(assert) {
-  assert.expect(0);
+  assert.expect(1);
 
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
-  /*
-  this.render(hbs`{{zf-dropdown}}`);
-
-  assert.equal(this.$().text().trim(), '');
 
   // Template block usage:" + EOL +
   this.render(hbs`
-    {{#zf-dropdown}}
-      template block text
+    <button class="button" data-toggle="example-dropdown">Toggle Dropdown</button>
+    {{#zf-dropdown id="example-dropdown"}}
+      Example form in a dropdown.
+      <form>
+        <div class="row">
+          <div class="medium-6 columns">
+            <label>Name
+              <input type="text" placeholder="Kirk, James T.">
+            </label>
+          </div>
+          <div class="medium-6 columns">
+            <label>Rank
+              <input type="text" placeholder="Captain">
+            </label>
+          </div>
+        </div>
+      </form>
     {{/zf-dropdown}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
-  */
+  assert.ok(this.$().text().indexOf('Example form in a dropdown.') > -1);
+
 });
