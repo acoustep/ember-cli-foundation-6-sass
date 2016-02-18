@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-foundation-6-sass",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Foundation 6 SASS package for Ember CLI",
   "directories": {
     "doc": "doc",
