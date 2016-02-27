@@ -3,7 +3,9 @@ import Ember from 'ember';
 
 export function initialize(/* application */) {
   // application.inject('route', 'foo', 'service:foo');
-  Ember.$().foundation();
+  if (Ember.typeOf(Ember.$().foundation) === 'function') {
+    Ember.$().foundation();
+  }
 }
 
 export default {
