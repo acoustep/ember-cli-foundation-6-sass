@@ -1,12 +1,13 @@
 var fs          = require('fs');
 var path        = require('path');
+var bower       = require('../../bower.json');
 
 module.exports = {
   description: 'install ember-cli-foundation-6-sass into a typical project',
   normalizeEntityName: function() {},
 
   beforeInstall: function () {
-    return this.addBowerPackageToProject('foundation-sites', '~6.1.0');
+    return this.addBowerPackageToProject('foundation-sites', bower.dependencies['foundation-sites']);
   },
 
   afterInstall: function () {
