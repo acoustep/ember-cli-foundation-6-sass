@@ -60,7 +60,7 @@ export default Ember.Mixin.create({
   /**
    * Handle destruction of component.
    */
-  shutdown: Ember.on('willDestoryElement', function() {
+  shutdown: Ember.on('willDestroyElement', function() {
     let ui = this.get('zfUi');
     if (Ember.isPresent(ui)) {
       let observers = this._observers;
