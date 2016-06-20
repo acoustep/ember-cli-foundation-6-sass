@@ -61,21 +61,16 @@
     <div class="small-12 large-expand columns">
       <h2>Reveal</h2>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse aliquid, optio ab!</p>
-      {{#unless disableReveal}}
-        <p><a data-open="exampleModal">Click me for a modal</a></p>
-        {{#zf-reveal id="exampleModal" overlay=showDialogOverlay}}
-          <h1>Awesome. I Have It.</h1>
-          <p class="lead">Your couch. It is mine.</p>
-          <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
-          <button class="close-button" data-close aria-label="Close reveal" type="button">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        {{/zf-reveal}}
-      {{else}}
-        <p>Enable Reveal to test.</p>
-      {{/unless}}
+      <p><a data-open="exampleModal">Click me for a modal</a></p>
+      {{#zf-reveal id="exampleModal" overlay=showDialogOverlay}}
+        <h1>Awesome. I Have It.</h1>
+        <p class="lead">Your couch. It is mine.</p>
+        <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
+        <button class="close-button" data-close aria-label="Close reveal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      {{/zf-reveal}}
       <p>{{input type="checkbox" name="showDialogOverlay" checked=showDialogOverlay}} Show Overlay</p>
-      <p>{{input type="checkbox" name="disableReveal" checked=disableReveal}} Disable Reveal</p>
     </div>
   </div>
 
