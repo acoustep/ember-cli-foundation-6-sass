@@ -1,6 +1,8 @@
+/* jshint node:true */
+
 var fs          = require('fs');
 var path        = require('path');
-var bower       = require('../../bower.json');
+var bower       = require(path.resolve(__dirname, '../../bower.json'));
 
 module.exports = {
   description: 'install ember-cli-foundation-6-sass into a typical project',
