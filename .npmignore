@@ -9,6 +9,5 @@ dist/
 .travis.yml
 .npmignore
 **/.gitkeep
-bower.json
 Brocfile.js
 testem.json
