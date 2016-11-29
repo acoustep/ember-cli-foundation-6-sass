@@ -1,6 +1,8 @@
 /* jshint node: true */
 'use strict';
 var path = require('path');
+var fs = require('fs');
+var babel = require('babel-core');
 
 module.exports = {
   name: 'ember-cli-foundation-6-sass',
@@ -24,7 +26,11 @@ module.exports = {
       else if (options.foundationJs instanceof Array) {
         options.foundationJs.forEach(function(componentName) {
           var foundationJsPath = path.join(app.bowerDirectory, 'foundation-sites', 'js');
-          app.import(path.join(foundationJsPath, 'foundation.' + componentName + '.js'));
+          var es5code = babel.transformFileSync(path.join(foundationJsPath, 'foundation.' + componentName + '.js')).code;
+          var filenameAndPath = path.join(foundationJsPath, 'foundation.' + componentName + '.es5.js');
+
+          fs.writeFileSync(filenameAndPath, es5code);
+          app.import(filenameAndPath);
         });
       }
     }

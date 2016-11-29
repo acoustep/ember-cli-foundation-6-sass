@@ -19,6 +19,11 @@ See Foundation 6 documentation for details.
 
 http://foundation.zurb.com/sites/docs/
 
+If you want to include just the partials that you are actually using in your app, copy the `foundation-everything` mixin 
+into a `foundation-custom` file, and import that mixin instead of the `foundation-everything` mixin. Then you can adjust 
+what is and isn't included by editing the `foundation-custom` file. Warning: you will need to manage your dependencies 
+and styles manually if going this route.
+
 ## Installation
 
 ```
@@ -42,6 +47,63 @@ module.exports = function(defaults) {
     // Add options here
     'ember-cli-foundation-6-sass': {
       'foundationJs': 'all'
+    }
+  });
+
+  return app.toTree();
+};
+```
+
+## Javascript Partials
+
+To use only parts of Foundation's Javascript features add ```foundationJS``` to your 
+Ember app's options with an array of the elements to include. Remove the elements that 
+should not be included. Using this method will require managing the dependencies for each 
+component and making sure the appropriate `util.` files are included for the components 
+being included. Because Foundation since v6.2 has written the modules in ES6, they need 
+to be transpiled to ES5 (Ember does not transpile the vendors.js files).
+
+```javascript
+// ember-cli-build.js
+
+/* global require, module */
+var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+
+module.exports = function(defaults) {
+  var app = new EmberApp(defaults, {
+    // Add options here
+    'ember-cli-foundation-6-sass': {
+            'foundationJs': [
+                'core',
+                'util.box',
+                'util.keyboard',
+                'util.mediaQuery',
+                'util.motion',
+                'util.nest',
+                'util.timerAndImageLoader',
+                'util.touch',
+                'util.triggers',
+                'abide',
+                'accordion',
+                'accordionMenu',
+                'drilldown',
+                'dropdown',
+                'dropdownMenu',
+                'equalizer',
+                'interchange',
+                'magellan',
+                'offcanvas',
+                'orbit',
+                'responsiveMenu',
+                'responsiveToggle',
+                'reveal',
+                'slider',
+                'sticky',
+                'tabs',
+                'toggler',
+                'tooltip'
+            ]
+        },
     }
   });
 
