@@ -22,7 +22,6 @@
   "author": "Mitch Stanley",
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "^6.18.2",
     "broccoli-asset-rev": "^2.2.0",
     "ember-cli": "1.13.13",
     "ember-cli-app-version": "^1.0.0",
@@ -46,6 +45,18 @@
     "ember-addon"
   ],
   "dependencies": {
+    "babel-core": "^6.20.0",
+    "babel-plugin-transform-es2015-arrow-functions": "^6.8.0",
+    "babel-plugin-transform-es2015-block-scoped-functions": "^6.8.0",
+    "babel-plugin-transform-es2015-block-scoping": "^6.18.0",
+    "babel-plugin-transform-es2015-classes": "^6.18.0",
+    "babel-plugin-transform-es2015-destructuring": "^6.19.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
+    "babel-plugin-transform-es2015-parameters": "^6.18.0",
+    "babel-plugin-transform-es2015-shorthand-properties": "^6.18.0",
+    "babel-plugin-transform-es2015-spread": "^6.8.0",
+    "babel-plugin-transform-es2015-template-literals": "^6.8.0",
+    "babel-register": "^6.18.0",
     "ember-cli-htmlbars": "^1.0.2",
     "ember-cli-sass": "^5.1.0"
   },
