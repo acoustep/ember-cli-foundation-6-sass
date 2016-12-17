@@ -20,7 +20,7 @@ module.exports = {
       if ((typeof options.foundationJs == 'string') ||
           (options.foundationJs instanceof String)) {
         if (options.foundationJs === 'all') {
-          app.import(path.join(app.bowerDirectory, 'foundation-sites', 'dist', 'foundation.js'));
+          app.import(path.join(app.bowerDirectory, 'foundation-sites', 'dist', 'js', 'foundation.js'));
         }
       }
       else if (options.foundationJs instanceof Array) {
