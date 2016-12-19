@@ -1,5 +1,12 @@
 # Ember CLI Foundation 6 SASS
 
+## Installation
+
+```
+npm install --save-dev ember-cli-sass
+ember install ember-cli-foundation-6-sass
+```
+
 ## Getting Started
 
 Run the generator to install the dependencies
@@ -23,14 +30,6 @@ If you want to include just the partials that you are actually using in your app
 into a `foundation-custom` file, and import that mixin instead of the `foundation-everything` mixin. Then you can adjust 
 what is and isn't included by editing the `foundation-custom` file. Warning: you will need to manage your dependencies 
 and styles manually if going this route.
-
-## Installation
-
-```
-npm install --save-dev ember-cli-sass
-ember install ember-cli-foundation-6-sass
-ember g ember-cli-foundation-6-sass
-```
 
 ## Javascript
 
