@@ -1,2 +1,5 @@
-@import 'foundation';
+// For foundation-sites <= 6.3.0
+// @import 'foundation';
+// For foundation-sites >= 6.3.0
+@import 'foundation-sites/foundation';
 @include foundation-everything;
