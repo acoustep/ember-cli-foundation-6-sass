@@ -131,9 +131,10 @@ A full sample is available in tests/dummy/app/templates/application.hbs
 To run the sample, clone this repo and run:
 
 ```bash
+npm install
+bower install
 ember serve
 ```
-
 
 ### Accordion Menu
 
