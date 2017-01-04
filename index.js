@@ -3,10 +3,9 @@
 var path = require('path');
 var fs = require('fs');
 var babel = require('babel-core');
-var semver = require('semver');
+var VersionChecker = require('ember-cli-version-checker');
 var Funnel = require('broccoli-funnel');
 var mergeTrees = require('broccoli-merge-trees');
-var BrocDebug = require('broccoli-debug');
 
 module.exports = {
   name: 'ember-cli-foundation-6-sass',
@@ -15,8 +14,8 @@ module.exports = {
     var options = app.options['ember-cli-foundation-6-sass'];
 
     var foundationPath = path.join(app.bowerDirectory, 'foundation-sites');
-    var foundationVersion = require(path.join(app.project.root, foundationPath, 'bower.json')).version;
-    var isGTE6_3_0 = semver.gte('6.3.0', foundationVersion);
+    var checker = new VersionChecker(this);
+    var isGTE6_3_0 = checker.for('foundation-sites', 'bower').satisfies('>=6.3.0');
 
     app.options.sassOptions = app.options.sassOptions || {};
     app.options.sassOptions.includePaths = app.options.sassOptions.includePaths || [];
@@ -31,7 +30,7 @@ module.exports = {
       })]);
     }
 
-    app.options.sassOptions.includePaths.push(BrocDebug.instrument.print(foundationPath));
+    app.options.sassOptions.includePaths.push(foundationPath);
 
     // Include the js paths
     if (options && options.foundationJs) {
