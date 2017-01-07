@@ -11,7 +11,9 @@ ember g ember-cli-foundation-6-sass
 Then, either let the generator add the `app.scss` file, or include the following in your existing one:
 
 ```
-@import 'foundation';
+// For foundation-sites <= 6.3.0
+// @import 'foundation';
+// For foundation-sites >= 6.3.0
 @include foundation-everything;
 ```
 

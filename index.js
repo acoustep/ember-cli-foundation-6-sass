@@ -3,6 +3,9 @@
 var path = require('path');
 var fs = require('fs');
 var babel = require('babel-core');
+var VersionChecker = require('ember-cli-version-checker');
+var Funnel = require('broccoli-funnel');
+var mergeTrees = require('broccoli-merge-trees');
 
 module.exports = {
   name: 'ember-cli-foundation-6-sass',
@@ -10,17 +13,37 @@ module.exports = {
     this._super.included(app);
     var options = app.options['ember-cli-foundation-6-sass'];
 
-    var foundationPath = path.join(app.bowerDirectory, 'foundation-sites', 'scss');
+    var foundationPath = path.join(app.bowerDirectory, 'foundation-sites');
+    var checker = new VersionChecker(this);
+    var isGTE6_3_0 = checker.for('foundation-sites', 'bower').satisfies('>=6.3.0');
+
     app.options.sassOptions = app.options.sassOptions || {};
     app.options.sassOptions.includePaths = app.options.sassOptions.includePaths || [];
+
+    // >=6.3.0 changed some paths.
+    if (isGTE6_3_0) {
+      foundationPath = mergeTrees([new Funnel(foundationPath, {
+        include: ['_vendor/**/*']
+      }), new Funnel(path.join(foundationPath, 'scss'), {
+        destDir: 'foundation-sites',
+        include: ['**/*']
+      })]);
+    }
+
     app.options.sassOptions.includePaths.push(foundationPath);
 
     // Include the js paths
     if (options && options.foundationJs) {
-      if ((typeof options.foundationJs == 'string') ||
+      if ((typeof options.foundationJs === 'string') ||
           (options.foundationJs instanceof String)) {
         if (options.foundationJs === 'all') {
-          app.import(path.join(app.bowerDirectory, 'foundation-sites', 'dist', 'js', 'foundation.js'));
+
+          // >=6.3.0 changed some paths.
+          if (isGTE6_3_0) {
+            app.import(path.join(app.bowerDirectory, 'foundation-sites', 'dist', 'js', 'foundation.js'));
+          } else {
+            app.import(path.join(app.bowerDirectory, 'foundation-sites', 'js', 'foundation.js'));
+          }
         }
       }
       else if (options.foundationJs instanceof Array) {
