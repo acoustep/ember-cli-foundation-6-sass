@@ -10,7 +10,7 @@ module.exports = {
   normalizeEntityName: function() {},
 
   beforeInstall: function () {
-    // return this.addBowerPackageToProject('foundation-sites', bower.dependencies['foundation-sites']);
+    return this.addBowerPackageToProject('foundation-sites', bower.dependencies['foundation-sites']);
   },
 
   afterInstall: function () {
