@@ -23,14 +23,23 @@ Then, either let the generator add the `app.scss` file, or include the following
 // For foundation-sites >= 6.3.0
 @include foundation-everything;
 ```
+Note - Due to [issue](https://github.com/acoustep/ember-cli-foundation-6-sass/issues/44) introduced by `foundation-sites@6.3.0`, you should use the following in your `app.scss` until the issue resolved.
+```
+@import "foundation-sites/foundation";
+```
+Also, if you encountered error `Error: File to import not found or unreadable: util/util.`, you need to include
+```
+@import "foundation-sites/util/util";
+```
+
 
 See Foundation 6 documentation for details.
 
 http://foundation.zurb.com/sites/docs/
 
-If you want to include just the partials that you are actually using in your app, copy the `foundation-everything` mixin 
-into a `foundation-custom` file, and import that mixin instead of the `foundation-everything` mixin. Then you can adjust 
-what is and isn't included by editing the `foundation-custom` file. Warning: you will need to manage your dependencies 
+If you want to include just the partials that you are actually using in your app, copy the `foundation-everything` mixin
+into a `foundation-custom` file, and import that mixin instead of the `foundation-everything` mixin. Then you can adjust
+what is and isn't included by editing the `foundation-custom` file. Warning: you will need to manage your dependencies
 and styles manually if going this route.
 
 ## Javascript
@@ -57,11 +66,11 @@ module.exports = function(defaults) {
 
 ## Javascript Partials
 
-To use only parts of Foundation's Javascript features add ```foundationJS``` to your 
-Ember app's options with an array of the elements to include. Remove the elements that 
-should not be included. Using this method will require managing the dependencies for each 
-component and making sure the appropriate `util.` files are included for the components 
-being included. Because Foundation since v6.2 has written the modules in ES6, they need 
+To use only parts of Foundation's Javascript features add ```foundationJS``` to your
+Ember app's options with an array of the elements to include. Remove the elements that
+should not be included. Using this method will require managing the dependencies for each
+component and making sure the appropriate `util.` files are included for the components
+being included. Because Foundation since v6.2 has written the modules in ES6, they need
 to be transpiled to ES5 (Ember does not transpile the vendors.js files).
 
 ```javascript
