@@ -80,7 +80,10 @@ export default Ember.Mixin.create({
       for (let zfUi of zfUiList) {
         zfUi.destroy();
       }
-      element.remove();
+      
+      if(element.hasClass('reveal')) {
+        element.remove();
+      }
     });
   }),
 
