@@ -73,11 +73,15 @@ export default Ember.Mixin.create({
       }
     }
 
-    // Finally destory everything else.
-    let zfUiList = this.get('zfUiList');
-    for (let zfUi of zfUiList) {
-      zfUi.destroy();
-    }
+    run.schedule('render', () => {
+      // Finally destroy everything else.
+      let zfUiList = this.get('zfUiList'),
+        element = ui.$element;
+      for (let zfUi of zfUiList) {
+        zfUi.destroy();
+      }
+      element.remove();
+    });
   }),
 
 
