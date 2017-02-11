@@ -73,7 +73,7 @@ export default Ember.Mixin.create({
       }
     }
 
-    run.schedule('render', () => {
+    Ember.run.schedule('render', () => {
       // Finally destroy everything else.
       let zfUiList = this.get('zfUiList'),
         element = ui.$element;
