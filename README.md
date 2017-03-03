@@ -418,7 +418,7 @@ Usage
 Usage
 
 ```hbs
-{{#zf-tabs}}
+{{#zf-tabs id="example-tabs"}}
   <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Tab 1</a></li>
   <li class="tabs-title"><a href="#panel2">Tab 2</a></li>
 {{/zf-tabs}}
