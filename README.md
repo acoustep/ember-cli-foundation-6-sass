@@ -12,6 +12,7 @@ ember install ember-cli-foundation-6-sass
 Run the generator to install the dependencies
 
 ```bash
+ember install ember-cli-foundation-6-sass
 ember g ember-cli-foundation-6-sass
 ```
 
