@@ -1,0 +1,20 @@
+{{#if hasBlock}}
+  {{#if flash}}
+    {{!-- todo: investigate using block-slots --}}
+    {{yield this flash}}
+  {{/if}}
+  {{!-- this contains user provided block content --}}
+  {{yield}}
+
+{{else}}
+
+  {{#if flash}}
+    {{flash.message}}
+
+  {{/if}}
+
+  {{#if content}}
+    {{content}}
+  {{/if}}
+
+{{/if}}
