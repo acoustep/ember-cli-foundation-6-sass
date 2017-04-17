@@ -1,3 +1,4 @@
+/*global Foundation:false*/
 import Ember from 'ember';
 
 /**
@@ -80,7 +81,7 @@ export default Ember.Mixin.create({
       for (let zfUi of zfUiList) {
         zfUi.destroy();
       }
-      
+
       if(element.hasClass('reveal')) {
         element.remove();
       }
