@@ -12,6 +12,8 @@ export default Ember.Component.extend(zfWidget, {
   /** @member Makes the data attribute binding appear */
   'data-reveal': ' ',
 
+  'overlay': true,
+
   /** @member Foundation type */
   'zfType': 'Reveal',
 
