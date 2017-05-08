@@ -5,7 +5,10 @@ const { computed, assert } = Ember;
 
 export default Ember.Component.extend(zfWidget, {
   /** @member Class names */
-  classNames: ['dropdown-pane', '_position'],
+  classNames: ['dropdown-pane'],
+
+  /* @member Position class name */
+  classNameBindings: ['_position'],
 
   /** @member Attribute bindings */
   attributeBindings: ['data-dropdown', 'data-auto-focus', 'data-hover', 'data-hover-pane'],
@@ -31,7 +34,7 @@ export default Ember.Component.extend(zfWidget, {
   _position: computed('positionClass', function() {
     let allowedPositions = ['top', 'right', 'left', 'bottom'];
     let position = this.get('positionClass');
-    assert('Must provide a valid foundation position for dropdown', allowedPositions.indexOf(position));
+    assert('Must provide a valid foundation position for dropdown', allowedPositions.includes(position));
 
     return position;
   }),
