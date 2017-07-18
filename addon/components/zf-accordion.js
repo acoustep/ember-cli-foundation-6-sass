@@ -19,5 +19,9 @@ export default Ember.Component.extend(zfWidget, {
   'zfType': 'Accordion',
 
   /** @member Foundation specific options */
-  'zfOptions': ['slideSpeed', 'multiExpand', 'allowAllClosed']
+  'zfOptions': ['slideSpeed', 'multiExpand', 'allowAllClosed'],
+
+  update: Ember.on('didUpdate', function() {
+    this._setup();
+  }),
 });

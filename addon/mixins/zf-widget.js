@@ -19,6 +19,40 @@ export default Ember.Mixin.create({
    * Handle setup of this components' DOM element.
    */
   setup: Ember.on('didInsertElement', function() {
+    this._setup();
+  }),
+
+  /**
+   * Handle destruction of component.
+   */
+  shutdown: Ember.on('willDestroyElement', function() {
+    let ui = this.get('zfUi');
+    if (Ember.isPresent(ui)) {
+      let observers = this._observers;
+
+      // Nuke any observers that were created
+      for (let opKey in observers) {
+        if (observers.hasOwnProperty(opKey)) {
+          this.removeObserver(opKey, observers[opKey]);
+        }
+      }
+    }
+
+    Ember.run.schedule('render', () => {
+      // Finally destroy everything else.
+      let zfUiList = this.get('zfUiList'),
+        element = ui.$element;
+      for (let zfUi of zfUiList) {
+        zfUi.destroy();
+      }
+
+      if(element.hasClass('reveal')) {
+        element.remove();
+      }
+    });
+  }),
+
+  _setup: function() {
     // Perform any custom handling
     if (Ember.isPresent(this.handlePreRender)) {
       this.handlePreRender();
@@ -65,41 +99,7 @@ export default Ember.Mixin.create({
         this.handleInsert();
       }
     });
-  }),
-
-
-
-  /**
-   * Handle destruction of component.
-   */
-  shutdown: Ember.on('willDestroyElement', function() {
-    let ui = this.get('zfUi');
-    if (Ember.isPresent(ui)) {
-      let observers = this._observers;
-
-      // Nuke any observers that were created
-      for (let opKey in observers) {
-        if (observers.hasOwnProperty(opKey)) {
-          this.removeObserver(opKey, observers[opKey]);
-        }
-      }
-    }
-
-    Ember.run.schedule('render', () => {
-      // Finally destroy everything else.
-      let zfUiList = this.get('zfUiList'),
-        element = ui.$element;
-      for (let zfUi of zfUiList) {
-        zfUi.destroy();
-      }
-
-      if(element.hasClass('reveal')) {
-        element.remove();
-      }
-    });
-  }),
-
-
+  },
 
   /**
    * Translate the options from the Ember way to foundation.
