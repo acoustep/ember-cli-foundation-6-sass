@@ -13,23 +13,28 @@ module.exports = {
     this._super.included(app);
     var options = app.options['ember-cli-foundation-6-sass'];
 
-    var foundationPath = path.join(app.bowerDirectory, 'foundation-sites');
     var checker = new VersionChecker(this);
-    var isGTE6_3_0 = checker.for('foundation-sites', 'bower').satisfies('>=6.3.0');
+    var isGTE6_3_0 = checker.for('foundation-sites', 'npm').satisfies('>=6.3.0');
 
     app.options.sassOptions = app.options.sassOptions || {};
     app.options.sassOptions.includePaths = app.options.sassOptions.includePaths || [];
 
+    // Calculate the path using require.resolve which checks the whole path.
+    // This gives us a specific file in dist/js/npm.js hence the need to path.resolve our way back up.
+    var foundationPath = path.resolve(require.resolve('foundation-sites'), '../..');
+
     // >=6.3.0 changed some paths.
     if (isGTE6_3_0) {
-      foundationPath = mergeTrees([new Funnel(foundationPath, {
+      foundationPath = path.resolve(require.resolve('foundation-sites'), '../../..'); // go deeper
+      var foundationFunnel = mergeTrees([new Funnel(foundationPath, {
         include: ['_vendor/**/*']
       }), new Funnel(path.join(foundationPath, 'scss'), {
         destDir: 'foundation-sites',
         include: ['**/*']
       })]);
-    }
 
+      app.options.sassOptions.includePaths.push(foundationFunnel);
+    }
     app.options.sassOptions.includePaths.push(foundationPath);
 
     // Include the js paths
@@ -41,15 +46,15 @@ module.exports = {
 
             // >=6.3.0 changed some paths.
             if (isGTE6_3_0) {
-              app.import(path.join(app.bowerDirectory, 'foundation-sites', 'dist', 'js', 'foundation.js'));
+              app.import(path.join(foundationPath, 'dist', 'js', 'foundation.js'));
             } else {
-              app.import(path.join(app.bowerDirectory, 'foundation-sites', 'js', 'foundation.js'));
+              app.import(path.join(foundationPath, 'foundation-sites', 'js', 'foundation.js'));
             }
           }
         }
         else if (options.foundationJs instanceof Array) {
           options.foundationJs.forEach(function(componentName) {
-            var foundationJsPath = path.join(app.bowerDirectory, 'foundation-sites', 'js');
+            var foundationJsPath = path.join(foundationPath, 'js');
             var es5code = babel.transformFileSync(path.join(foundationJsPath, 'foundation.' + componentName + '.js'), {
               'plugins': [
                 require.resolve('babel-plugin-transform-es2015-arrow-functions'),

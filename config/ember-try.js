@@ -14,6 +14,9 @@ module.exports = {
       npm: {
         devDependencies: {
           'ember-source': null
+        },
+        dependencies: {
+          'ember': 'components/ember#lts-2-4'
         }
       }
     },
@@ -35,49 +38,34 @@ module.exports = {
     },
     {
       name: 'ember-release',
-      bower: {
-        dependencies: {
-          'ember': 'components/ember#release'
-        },
-        resolutions: {
-          'ember': 'release'
-        }
-      },
       npm: {
         devDependencies: {
           'ember-source': null
+        },
+        dependencies: {
+          'ember': 'components/ember#release'
         }
       }
     },
     {
       name: 'ember-beta',
-      bower: {
-        dependencies: {
-          'ember': 'components/ember#beta'
-        },
-        resolutions: {
-          'ember': 'beta'
-        }
-      },
       npm: {
         devDependencies: {
           'ember-source': null
+        },
+        dependencies: {
+          'ember': 'components/ember#beta'
         }
       }
     },
     {
       name: 'ember-canary',
-      bower: {
-        dependencies: {
-          'ember': 'components/ember#canary'
-        },
-        resolutions: {
-          'ember': 'canary'
-        }
-      },
       npm: {
         devDependencies: {
           'ember-source': null
+        },
+        dependencies: {
+          'ember': 'components/ember#canary'
         }
       }
     },
