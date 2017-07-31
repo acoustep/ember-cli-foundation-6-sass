@@ -2,7 +2,6 @@
 
 var fs          = require('fs');
 var path        = require('path');
-var bower       = require(path.resolve(__dirname, '../../bower.json'));
 var VersionChecker = require('ember-cli-version-checker');
 
 module.exports = {
@@ -10,16 +9,26 @@ module.exports = {
   normalizeEntityName: function() {},
 
   beforeInstall: function () {
-    return this.addBowerPackageToProject('foundation-sites', bower.dependencies['foundation-sites']);
+    return this.addPackageToProject('foundation-sites', "^6.3.1");
   },
 
   afterInstall: function () {
+    // determine what version we are using
+    var checker = new VersionChecker(this);
+    var isGTE6_3_0 = checker.for('foundation-sites', 'npm').satisfies('>=6.3.0');
+
     // Copy the _settings.scss file
     var stylePath = path.join(process.cwd(), 'app', 'styles');
-    var foundationPath = path.join(process.cwd(), 'bower_components', 'foundation-sites', 'scss');
+    // Calculate the path using require.resolve which checks the whole path.
+    // This gives us a specific file in dist/js/npm.js hence the need to path.resolve our way back up.
+    var foundationPath = path.resolve(require.resolve('foundation-sites'), '../../scss/');
+
+    // some thats changed in
+    if (isGTE6_3_0) {
+      foundationPath = path.resolve(require.resolve('foundation-sites'), '../../../scss/');
+    }
+
     var settingsPath = path.join(foundationPath, 'settings', '_settings.scss');
-    var checker = new VersionChecker(this);
-    var isGTE6_3_0 = checker.for('foundation-sites', 'bower').satisfies('>=6.3.0');
     var settingsFile = fs.readFileSync(settingsPath);
     var settingsFilePath = path.join(stylePath, '_settings.scss');
     var appFile, appFilePath;

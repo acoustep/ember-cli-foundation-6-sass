@@ -14,7 +14,7 @@ test('it renders', function(assert) {
   // Template block usage:" + EOL +
   this.render(hbs`
     <button class="button" data-toggle="example-dropdown">Toggle Dropdown</button>
-    {{#zf-dropdown id="example-dropdown"}}
+    {{#zf-dropdown id="example-dropdown" positionClass="bottom"}}
       Example form in a dropdown.
       <form>
         <div class="row">

@@ -143,7 +143,6 @@ To run the sample, clone this repo and run:
 
 ```bash
 npm install
-bower install
 ember serve
 ```
 
