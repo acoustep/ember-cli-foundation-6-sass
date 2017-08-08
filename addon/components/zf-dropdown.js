@@ -11,7 +11,8 @@ export default Ember.Component.extend(zfWidget, {
   classNameBindings: ['_position'],
 
   /** @member Attribute bindings */
-  attributeBindings: ['data-dropdown', 'data-auto-focus', 'data-hover', 'data-hover-pane'],
+  attributeBindings: ['data-dropdown', 'data-auto-focus', 'data-hover', 'data-hover-pane',
+                      'data-position', 'data-alignment'],
 
   /** @member Makes the data attribute binding appear */
   'data-dropdown': ' ',
@@ -30,11 +31,14 @@ export default Ember.Component.extend(zfWidget, {
   /** @member Foundation type */
   'zfType': 'Dropdown',
 
-  /** @private  Hanlde attribute bindings for position **/
+  /** @private Handle attribute bindings for position **/
   _position: computed('positionClass', function() {
     let allowedPositions = ['top', 'right', 'left', 'bottom'];
     let position = this.get('positionClass');
-    assert('Must provide a valid foundation position for dropdown', allowedPositions.includes(position));
+
+    if (Ember.isBlank(this.get('data-position')) && Ember.isBlank(this.get('data-alignment'))) {
+      assert('Must provide a valid foundation position for dropdown', allowedPositions.includes(position));
+    }
 
     return position;
   }),
