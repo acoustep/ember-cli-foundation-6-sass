@@ -1,6 +1,0 @@
-{
-  "name": "ember-cli-foundation-6-sass",
-  "dependencies": {
-    "foundation-sites": "^6.3.1"
-  }
-}

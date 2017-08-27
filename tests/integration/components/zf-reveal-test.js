@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -27,21 +28,19 @@ test('it renders', function(assert) {
 });
 
 test('it destroys the reveal-overlay', function(assert) {
-  assert.expect(1);
-
-  this.set('enableReveal', true);
+  assert.expect(2);
 
   this.render(hbs`
-    {{#if enableReveal}}
-      {{#zf-reveal}}
-        template block text
-      {{/zf-reveal}}
-    {{/if}}
+    {{#zf-reveal}}
+      template block text
+    {{/zf-reveal}}
   `);
 
-  //assert.equal(this.$('.reveal').length, 1);
+  assert.equal(Ember.$('.reveal-overlay').length, 1);
 
-  this.set('enableReveal', false);
+  this.render(hbs`
+    Hello World
+  `);
 
-  assert.ok(this.$());
+  assert.equal(Ember.$('.reveal-overlay').length, 0);
 });

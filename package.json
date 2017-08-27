@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-foundation-6-sass",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "Foundation 6 SASS package for Ember CLI",
   "directories": {
     "doc": "doc",
@@ -65,7 +65,8 @@
     "ember-cli-htmlbars-inline-precompile": "^0.4.2",
     "ember-cli-sass": "^6.1.3",
     "ember-cli-version-checker": "^1.3.1",
-    "fastboot-transform": "^0.1.1"
+    "fastboot-transform": "^0.1.1",
+    "foundation-sites": "^6.3.1"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
