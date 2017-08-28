@@ -6,9 +6,11 @@ module.exports = function(defaults) {
     'ember-cli-foundation-6-sass': {
       'foundationJs': 'all'
     },
+    'ember-cli-babel': {
+      includePolyfill: true
+    },
     babel: {
       optional: ['es6.spec.symbols'],
-      includePolyfill: true
     }
   });
 
