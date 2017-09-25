@@ -1,8 +1,10 @@
-/* global require, module */
-var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
+/* eslint-env node */
+'use strict';
+
+const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function(defaults) {
-  var app = new EmberAddon(defaults, {
+  let app = new EmberAddon(defaults, {
     'ember-cli-foundation-6-sass': {
       'foundationJs': 'all'
     },
@@ -10,7 +12,7 @@ module.exports = function(defaults) {
       includePolyfill: true
     },
     babel: {
-      optional: ['es6.spec.symbols'],
+      optional: ['es6.spec.symbols']
     }
   });
 
