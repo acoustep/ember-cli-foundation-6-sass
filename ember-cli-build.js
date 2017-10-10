@@ -8,6 +8,17 @@ module.exports = function(defaults) {
     'ember-cli-foundation-6-sass': {
       'foundationJs': 'all'
     },
+
+    // 'ember-cli-foundation-6-sass': {
+    //   'foundationJs': [
+    //     'core',
+    //     'util.box',
+    //     'util.touch',
+    //     'dropdown',
+    //     'dropdownMenu',
+    //   ]
+    // },
+
     'ember-cli-babel': {
       includePolyfill: true
     },
