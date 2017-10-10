@@ -49,15 +49,19 @@ module.exports = {
 
         foundationTree = babelAddon.transpileTree(foundationTree);
       }
+
+      foundationTree = fastbootTransform(foundationTree);
+
+      return vendorTree ? new mergeTrees([vendorTree, foundationTree]) : foundationTree;
     }
 
-    foundationTree = fastbootTransform(foundationTree);
-    return new mergeTrees([vendorTree, foundationTree]);
+    return vendorTree;
   },
 
 
   included: function included(app) {
     this._super.included(app);
+    this.app = app;
     var options = app.options['ember-cli-foundation-6-sass'];
 
     var checker = new VersionChecker(this);
@@ -98,14 +102,14 @@ module.exports = {
         (options.foundationJs instanceof String)) {
         if (options.foundationJs === 'all') {
           this.jsFilesToInclude = ['foundation.js'];
-          app.import(path.join('vendor/foundation-sites', 'foundation.js'));
+          this.import(path.join('vendor/foundation-sites', 'foundation.js'));
         }
       }
       else if (options.foundationJs instanceof Array) {
         options.foundationJs.forEach((componentName) => {
           var filename = 'foundation.' + componentName + '.js';
           this.jsFilesToInclude.push(filename);
-          app.import(path.join('vendor/foundation-sites', filename));
+          this.import(path.join('vendor/foundation-sites', filename));
         });
       }
     }
