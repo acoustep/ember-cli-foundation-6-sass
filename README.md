@@ -32,7 +32,6 @@ Also, if you encountered error `Error: File to import not found or unreadable: u
 @import "foundation-sites/util/util";
 ```
 
-
 See Foundation 6 documentation for details.
 
 http://foundation.zurb.com/sites/docs/
@@ -121,6 +120,25 @@ module.exports = function(defaults) {
 
   return app.toTree();
 };
+```
+
+## Change Log
+
+### > 0.0.24
+`foundation-sites` is imported and usage of `Foundation` global has been deprecated. Custom wrappers that triggers the Foundation jQuery plugin will need to import `foundation-sites` in order for the Foundation jQuery plugin to be available.
+
+Example:
+
+```javascript
+import Ember from "ember";
+import "foundation-sites";
+
+export default Ember.Component.extend({
+  didInsertElement() {
+    this.$().foundation();
+  }
+});
+
 ```
 
 ## Included components

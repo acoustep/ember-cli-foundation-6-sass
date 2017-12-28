@@ -1,5 +1,5 @@
 import Ember from 'ember';
-
+import "foundation-sites";
 
 export function initialize(/* application */) {
   // application.inject('route', 'foo', 'service:foo');
