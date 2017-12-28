@@ -22,7 +22,7 @@ module.exports = {
     var babelAddon = this.addons.find(addon => addon.name === 'ember-cli-babel');
     var options = this.app.options['ember-cli-foundation-6-sass'];
     var checker = new VersionChecker(this);
-    var isGTE6_3_0 = checker.for('foundation-sites', 'npm').satisfies('>=6.3.0');
+    var isGTE6_4_0 = checker.for('foundation-sites', 'npm').satisfies('>=6.4.0');
     var foundationJSContent;
     var addonPath;
 
@@ -32,53 +32,30 @@ module.exports = {
         if (options.foundationJs === 'all') {
           addonPath = path.resolve(__dirname, 'addon');
 
-          if (isGTE6_3_0) {
-            foundationTree = new Rollup(addonPath, {
-              rollup: {
-                entry: '-private/foundation.js',
-                format: 'es',
-                dest: 'foundation-sites.js',
-                plugins: [
-                  nodeResolve(),
-                  legacy({
-                    // 6.4
-                    'node_modules/foundation-sites/js/entries/plugins/foundation.core.js': {
-                      Foundation: 'window.Foundation',
-                      default: 'window.Foundation'
-                    },
-                    // 6.3.1
-                    'node_modules/foundation-sites/dist/js/foundation.js': {
-                      Foundation: 'window.Foundation',
-                      default: 'window.Foundation'
-                    }
-                  })
-                ],
-                external: [
-                  'jquery'
-                ]
-              }
-            });
-          } else {
-            foundationTree = new Rollup(addonPath, {
-              rollup: {
-                entry: '-private/foundation.js',
-                format: 'es',
-                dest: 'foundation-sites.js',
-                plugins: [
-                  nodeResolve(),
-                  legacy({
-                    'node_modules/foundation-sites/dist/foundation.js': 'window.Foundation'
-                  })
-                ],
-                external: [
-                  'jquery'
-                ]
-              }
-            });
-          }
+          foundationTree = new Rollup(addonPath, {
+            rollup: {
+              entry: '-private/foundation.js',
+              format: 'es',
+              dest: 'foundation-sites.js',
+              plugins: [
+                nodeResolve(),
+                legacy({
+                  // 6.4
+                  'node_modules/foundation-sites/js/entries/plugins/foundation.core.js': 'window.Foundation',
+                  // 6.3.1
+                  'node_modules/foundation-sites/dist/js/foundation.js': 'window.Foundation',
+                  // 6.2.4
+                  'node_modules/foundation-sites/dist/foundation.js': 'window.Foundation'
+                })
+              ],
+              external: [
+                'jquery'
+              ]
+            }
+          });
         }
       } else {
-        if (isGTE6_3_0) {
+        if (isGTE6_4_0) {
           foundationJSContent = 'export { default } from \'foundation-sites/js/entries/plugins/foundation.core\';\n';
 
           foundationJSContent += this.jsFilesToInclude.filter((file) => {
@@ -87,27 +64,6 @@ module.exports = {
           }).map(function(file) {
             return 'import \'foundation-sites/js/entries/plugins/' + file.replace('.js', '') + '\';';
           }).join('\n');
-
-          foundationTree = new Rollup(writeFile('foundation.js', foundationJSContent), {
-            rollup: {
-              entry: 'foundation.js',
-              format: 'es',
-              dest: 'foundation-sites.js',
-              plugins: [
-                nodeResolve(),
-                legacy({
-                  // In 6.4, foundation-sites/js/entries/plugins/foundation.core doesn't export anything, so we need to use legacy to export some things.
-                  'node_modules/foundation-sites/js/entries/plugins/foundation.core.js': {
-                    Foundation: 'window.Foundation',
-                    default: 'window.Foundation'
-                  }
-                })
-              ],
-              external: [
-                'jquery'
-              ]
-            }
-          });
         } else {
             foundationJSContent = 'export { default } from \'foundation-sites/js/foundation.core\';\n';
 
@@ -117,24 +73,30 @@ module.exports = {
             }).map(function(file) {
               return 'import \'foundation-sites/js/' + file.replace('.js', '') + '\';';
             }).join('\n');
-
-            foundationTree = new Rollup(writeFile('foundation.js', foundationJSContent), {
-              rollup: {
-                entry: 'foundation.js',
-                format: 'es',
-                dest: 'foundation-sites.js',
-                plugins: [
-                  nodeResolve(),
-                  legacy({
-                    'node_modules/foundation-sites/js/foundation.core.js': 'window.Foundation'
-                  })
-                ],
-                external: [
-                  'jquery'
-                ]
-              }
-            });
         }
+
+        foundationTree = new Rollup(writeFile('foundation.js', foundationJSContent), {
+          rollup: {
+            entry: 'foundation.js',
+            format: 'es',
+            dest: 'foundation-sites.js',
+            plugins: [
+              nodeResolve(),
+              legacy({
+                // In 6.4, foundation-sites/js/entries/plugins/foundation.core doesn't export anything, so we need to use legacy to export some things.
+                'node_modules/foundation-sites/js/entries/plugins/foundation.core.js': {
+                  Foundation: 'window.Foundation',
+                  default: 'window.Foundation'
+                },
+                // 6.2.4 and 6.3.1
+                'node_modules/foundation-sites/js/foundation.core.js': 'window.Foundation'
+              })
+            ],
+            external: [
+              'jquery'
+            ]
+          }
+        });
       }
       foundationTree = babelAddon.transpileTree(foundationTree);
 
