@@ -41,7 +41,16 @@ module.exports = {
                 plugins: [
                   nodeResolve(),
                   legacy({
-                    'foundation-sites/js/entries/plugins/foundation.core.js': 'window.Foundation'
+                    // 6.4
+                    'node_modules/foundation-sites/js/entries/plugins/foundation.core.js': {
+                      Foundation: 'window.Foundation',
+                      default: 'window.Foundation'
+                    },
+                    // 6.3.1
+                    'node_modules/foundation-sites/dist/js/foundation.js': {
+                      Foundation: 'window.Foundation',
+                      default: 'window.Foundation'
+                    }
                   })
                 ],
                 external: [
