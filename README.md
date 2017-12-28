@@ -90,7 +90,9 @@ module.exports = function(defaults) {
                 'util.mediaQuery',
                 'util.motion',
                 'util.nest',
-                'util.timerAndImageLoader',
+                // Renamed from util.timerAndImageLoader to util.timer in foundation-sites@6.4
+                // 'util.timerAndImageLoader',
+                'util.timer'
                 'util.touch',
                 'util.triggers',
                 'abide',
@@ -123,7 +125,7 @@ module.exports = function(defaults) {
 
 ## Included components
 
-All of the Foundation components which require Javascript have been turned into Ember components.
+Majority of the Foundation components which require Javascript have been turned into Ember components.
 
 The vast majority of the Foundation Javascript options have been exposed as component parameters.
 See the Zurb Foundation for Sites documentation for any specifics.
