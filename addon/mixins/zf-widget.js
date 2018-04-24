@@ -1,5 +1,11 @@
-/*global Foundation:false*/
 import Ember from 'ember';
+import Foundation from '../-private/foundation';
+
+const {
+  Logger: {
+    warn
+  }
+} = Ember;
 
 /**
  * Mixin that was shamelessly ripped off from the Ember jQuery UI folks (hey, why reinvent the
@@ -30,24 +36,29 @@ export default Ember.Mixin.create({
       let zfType = this.get('zfType');
       let controlIds = this.get('controlIds');
       let zfUiList = [];
+      const isZfTypeLoaded = !!Foundation[zfType];
 
-      if (Ember.isPresent(controlIds)) {
-        for (let controlId of controlIds) {
-          let ui = new Foundation[zfType](this.$(controlId), options);
+      if (isZfTypeLoaded) {
+        if (Ember.isPresent(controlIds)) {
+          for (let controlId of controlIds) {
+            let ui = new Foundation[zfType](this.$(controlId), options);
+            zfUiList.push(ui);
+          }
+        }
+
+        if (0 === zfUiList.length) {
+          let ui = new Foundation[zfType](this.$(), options);
+          this.set('zfUi', ui);
           zfUiList.push(ui);
         }
-      }
+        else {
+          this.set('zfUi', zfUiList[0]);
+        }
 
-      if (0 === zfUiList.length) {
-        let ui = new Foundation[zfType](this.$(), options);
-        this.set('zfUi', ui);
-        zfUiList.push(ui);
+        this.set('zfUiList', zfUiList);
+      } else {
+        warn(`Foundation plugin ${zfType} has not been loaded, please check your ember-cli-foundation-6-sass configuration`);
       }
-      else {
-        this.set('zfUi', zfUiList[0]);
-      }
-
-      this.set('zfUiList', zfUiList);
 
       // Perform any custom handling
       if (Ember.isPresent(this.handleInsert)) {

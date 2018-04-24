@@ -32,7 +32,6 @@ Also, if you encountered error `Error: File to import not found or unreadable: u
 @import "foundation-sites/util/util";
 ```
 
-
 See Foundation 6 documentation for details.
 
 http://foundation.zurb.com/sites/docs/
@@ -90,7 +89,9 @@ module.exports = function(defaults) {
                 'util.mediaQuery',
                 'util.motion',
                 'util.nest',
-                'util.timerAndImageLoader',
+                // Renamed from util.timerAndImageLoader to util.timer in foundation-sites@6.4
+                // 'util.timerAndImageLoader',
+                'util.timer'
                 'util.touch',
                 'util.triggers',
                 'abide',
@@ -121,9 +122,28 @@ module.exports = function(defaults) {
 };
 ```
 
+## Change Log
+
+### > 0.0.24
+`foundation-sites` is imported and usage of `Foundation` global has been deprecated. Custom wrappers that triggers the Foundation jQuery plugin will need to import `foundation-sites` in order for the Foundation jQuery plugin to be available.
+
+Example:
+
+```javascript
+import Ember from "ember";
+import "foundation-sites";
+
+export default Ember.Component.extend({
+  didInsertElement() {
+    this.$().foundation();
+  }
+});
+
+```
+
 ## Included components
 
-All of the Foundation components which require Javascript have been turned into Ember components.
+Majority of the Foundation components which require Javascript have been turned into Ember components.
 
 The vast majority of the Foundation Javascript options have been exposed as component parameters.
 See the Zurb Foundation for Sites documentation for any specifics.
