@@ -215,6 +215,8 @@ Usage
 This addon tends to avoid markup-only related components, this component is a special case.
 This is a good way to easily provide a flash-message-style component to your Ember app.
 
+**NOTE:** This addon will not work as expected, unless used within the `ember-cli-flash`!
+
 This is designed to integrate with the [ember-cli-flash](https://github.com/poteto/ember-cli-flash) addon
 (which provides a foundation5 styling option)
 
