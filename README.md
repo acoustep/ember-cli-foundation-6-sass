@@ -1,5 +1,9 @@
 # Ember CLI Foundation 6 SASS
 
+## Looking for maintainer
+
+*Sadly I am no longer able to maintain this project due to time constraints and no longer working with Foundation. I am happy to review pull requests but ideally I am looking for a new maintainer. If you're interested send me a message. New maintainer must already have reasonably popular packages, ideally within the Ember community.*
+
 ## Installation
 
 ```
