@@ -22,6 +22,7 @@
   "author": "Mitch Stanley",
   "license": "MIT",
   "devDependencies": {
+    "@ember/optional-features": "^0.7.0",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
     "ember-cli": "~3.0.4",
@@ -51,6 +52,7 @@
     "ember-addon"
   ],
   "dependencies": {
+    "@ember/jquery": "^0.6.0",
     "babel-register": "^6.18.0",
     "broccoli-babel-transpiler": "^6.1.1",
     "broccoli-file-creator": "^1.1.1",
