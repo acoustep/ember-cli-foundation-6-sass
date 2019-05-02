@@ -1,11 +1,10 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import layout from '../templates/components/zf-callout';
-
-const {computed} = Ember;
 
 // Note: this doesn't use the zfWidget mixin since this isn't part of the
 // Foundation javascript.
-export default Ember.Component.extend({
+export default Component.extend({
   layout: layout,
   type: '',
   content: null,

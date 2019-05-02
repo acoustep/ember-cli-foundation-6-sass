@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { assert } from '@ember/debug';
 import zfWidget from 'ember-cli-foundation-6-sass/mixins/zf-widget';
 
-const { computed, assert } = Ember;
-
-export default Ember.Component.extend(zfWidget, {
+export default Component.extend(zfWidget, {
   /** @member Class names */
   classNames: ['dropdown-pane'],
 

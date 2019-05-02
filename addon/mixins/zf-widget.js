@@ -1,3 +1,7 @@
+import { schedule, scheduleOnce } from '@ember/runloop';
+import { isPresent } from '@ember/utils';
+import { on } from '@ember/object/evented';
+import Mixin from '@ember/object/mixin';
 import Ember from 'ember';
 import Foundation from '../-private/foundation';
 
@@ -13,21 +17,21 @@ const {
  * of Ember filled with Chocolate rivers and gumdrop rainbows. And bacon. Lot's and lots of
  * bacon.
  */
-export default Ember.Mixin.create({
+export default Mixin.create({
 
   /**
    * Handle setup of this components' DOM element.
    */
-  setup: Ember.on('didInsertElement', function() {
+  setup: on('didInsertElement', function() {
     this._setup();
   }),
 
   /**
    * Handle destruction of component.
    */
-  shutdown: Ember.on('willDestroyElement', function() {
+  shutdown: on('willDestroyElement', function() {
     let ui = this.get('zfUi');
-    if (Ember.isPresent(ui)) {
+    if (isPresent(ui)) {
       let observers = this._observers;
 
       // Nuke any observers that were created
@@ -38,7 +42,7 @@ export default Ember.Mixin.create({
       }
     }
 
-    Ember.run.schedule('render', () => {
+    schedule('render', () => {
       // Finally destroy everything else.
       let zfUiList = this.get('zfUiList'),
         element = ui.$element;
@@ -54,11 +58,11 @@ export default Ember.Mixin.create({
 
   _setup: function() {
     // Perform any custom handling
-    if (Ember.isPresent(this.handlePreRender)) {
+    if (isPresent(this.handlePreRender)) {
       this.handlePreRender();
     }
 
-    Ember.run.scheduleOnce('afterRender', () => {
+    scheduleOnce('afterRender', () => {
 
       // Adapt the options
       let options = this._adaptOptions();
@@ -73,7 +77,7 @@ export default Ember.Mixin.create({
       const isZfTypeLoaded = !!Foundation[zfType];
 
       if (isZfTypeLoaded) {
-        if (Ember.isPresent(controlIds)) {
+        if (isPresent(controlIds)) {
           for (let controlId of controlIds) {
             let ui = new Foundation[zfType](this.$(controlId), options);
             zfUiList.push(ui);
@@ -95,7 +99,7 @@ export default Ember.Mixin.create({
       }
 
       // Perform any custom handling
-      if (Ember.isPresent(this.handleInsert)) {
+      if (isPresent(this.handleInsert)) {
         this.handleInsert();
       }
     });

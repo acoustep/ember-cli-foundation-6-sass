@@ -1,27 +1,29 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('zf-dropdown-menu', 'Integration | Component | zf dropdown menu', {
-  integration: true
-});
+module('Integration | Component | zf dropdown menu', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  assert.expect(2);
+  test('it renders', async function(assert) {
+    assert.expect(2);
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
 
-  this.render(hbs`{{zf-dropdown-menu}}`);
+    await render(hbs`{{zf-dropdown-menu}}`);
 
-  assert.equal(this.$().text().trim(), '');
+    assert.equal(find('*').textContent.trim(), '');
 
-  // Template block usage:" + EOL +
-  this.render(hbs`
-    {{#zf-dropdown-menu}}
-      template block text
-    {{/zf-dropdown-menu}}
-  `);
+    // Template block usage:" + EOL +
+    await render(hbs`
+      {{#zf-dropdown-menu}}
+        template block text
+      {{/zf-dropdown-menu}}
+    `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
-  
+    assert.equal(find('*').textContent.trim(), 'template block text');
+    
+  });
 });

@@ -1,27 +1,29 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('zf-orbit', 'Integration | Component | zf orbit', {
-  integration: true
-});
+module('Integration | Component | zf orbit', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  assert.expect(2);
+  test('it renders', async function(assert) {
+    assert.expect(2);
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
 
-  this.render(hbs`{{zf-orbit}}`);
+    await render(hbs`{{zf-orbit}}`);
 
-  assert.equal(this.$().text().trim(), '');
+    assert.equal(find('*').textContent.trim(), '');
 
-  // Template block usage:" + EOL +
-  this.render(hbs`
-    {{#zf-orbit}}
-      template block text
-    {{/zf-orbit}}
-  `);
+    // Template block usage:" + EOL +
+    await render(hbs`
+      {{#zf-orbit}}
+        template block text
+      {{/zf-orbit}}
+    `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
-  
+    assert.equal(find('*').textContent.trim(), 'template block text');
+    
+  });
 });
