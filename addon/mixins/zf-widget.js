@@ -45,12 +45,13 @@ export default Mixin.create({
     schedule('render', () => {
       // Finally destroy everything else.
       let zfUiList = this.get('zfUiList'),
-        element = ui.$element;
+        element = ui && ui.$element;
+
       for (let zfUi of zfUiList) {
         zfUi.destroy();
       }
 
-      if(element.hasClass('reveal')) {
+      if(element && element.hasClass('reveal')) {
         element.remove();
       }
     });
