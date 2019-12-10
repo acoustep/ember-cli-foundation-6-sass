@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import zfWidget from 'ember-cli-foundation-6-sass/mixins/zf-widget';
 
-export default Ember.Component.extend(zfWidget, {
+export default Component.extend(zfWidget, {
 
   /** @member Class names */
   classNames: ['orbit'],

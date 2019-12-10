@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import { typeOf } from '@ember/utils';
+import $ from 'jquery';
 import "foundation-sites";
 
 export function initialize(/* application */) {
   // application.inject('route', 'foo', 'service:foo');
-  if (Ember.$ && Ember.typeOf(Ember.$().foundation) === 'function') {
-    Ember.$().foundation();
+  if ($ && typeOf($().foundation) === 'function') {
+    $().foundation();
   }
 }
 

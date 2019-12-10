@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { on } from '@ember/object/evented';
+import Component from '@ember/component';
 import zfWidget from 'ember-cli-foundation-6-sass/mixins/zf-widget';
 
-export default Ember.Component.extend(zfWidget, {
+export default Component.extend(zfWidget, {
 
   /** @member tag type */
   tagName: 'ul',
@@ -19,5 +20,9 @@ export default Ember.Component.extend(zfWidget, {
   'zfType': 'Accordion',
 
   /** @member Foundation specific options */
-  'zfOptions': ['slideSpeed', 'multiExpand', 'allowAllClosed']
+  'zfOptions': ['slideSpeed', 'multiExpand', 'allowAllClosed'],
+
+  update: on('didUpdate', function() {
+    this._setup();
+  }),
 });

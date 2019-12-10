@@ -48,7 +48,6 @@ module.exports = function(defaults) {
       includePolyfill: true
     },
     babel: {
-      optional: ['es6.spec.symbols']
     }
   });
 

@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import zfWidget from 'ember-cli-foundation-6-sass/mixins/zf-widget';
 import layout from '../templates/components/zf-off-canvas';
 
 
-export default Ember.Component.extend(zfWidget, {
+export default Component.extend(zfWidget, {
 
   /** @member Layout */
   layout: layout,

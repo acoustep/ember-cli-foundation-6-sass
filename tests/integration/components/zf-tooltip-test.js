@@ -1,27 +1,29 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('zf-tooltip', 'Integration | Component | zf tooltip', {
-  integration: true
-});
+module('Integration | Component | zf tooltip', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  assert.expect(2);
+  test('it renders', async function(assert) {
+    assert.expect(2);
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
 
-  this.render(hbs`{{zf-tooltip}}`);
+    await render(hbs`{{zf-tooltip}}`);
 
-  assert.equal(this.$().text().trim(), '');
+    assert.equal(find('*').textContent.trim(), '');
 
-  // Template block usage:" + EOL +
-  this.render(hbs`
-    {{#zf-tooltip}}
-      template block text
-    {{/zf-tooltip}}
-  `);
+    // Template block usage:" + EOL +
+    await render(hbs`
+      {{#zf-tooltip}}
+        template block text
+      {{/zf-tooltip}}
+    `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+    assert.equal(find('*').textContent.trim(), 'template block text');
 
+  });
 });

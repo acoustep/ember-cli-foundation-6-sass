@@ -1,46 +1,48 @@
-import Ember from 'ember';
-import { moduleForComponent, test } from 'ember-qunit';
+import $ from 'jquery';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('zf-reveal', 'Integration | Component | zf reveal', {
-  integration: true
-});
+module('Integration | Component | zf reveal', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  assert.expect(1);
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
+  test('it renders', async function(assert) {
+    assert.expect(1);
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
 
-  // this.render(hbs`{{zf-reveal}}`);
+    // this.render(hbs`{{zf-reveal}}`);
 
-  // assert.equal(this.$().text().trim(), '');
+    // assert.equal(this.$().text().trim(), '');
 
-  // Template block usage:" + EOL +
-  this.render(hbs`
-    {{#zf-reveal}}
-      template block text
-    {{/zf-reveal}}
-  `);
+    // Template block usage:" + EOL +
+    await render(hbs`
+      {{#zf-reveal}}
+        template block text
+      {{/zf-reveal}}
+    `);
 
-  assert.ok(this.$());
-  //assert.equal(this.$().text().trim(), 'template block text')
-  //assert.equal(this.$().text().trim(), 'template block text');
-});
+    assert.ok(this.$());
+    //assert.equal(this.$().text().trim(), 'template block text')
+    //assert.equal(this.$().text().trim(), 'template block text');
+  });
 
-test('it destroys the reveal-overlay', function(assert) {
-  assert.expect(2);
+  test('it destroys the reveal-overlay', async function(assert) {
+    assert.expect(2);
 
-  this.render(hbs`
-    {{#zf-reveal}}
-      template block text
-    {{/zf-reveal}}
-  `);
+    await render(hbs`
+      {{#zf-reveal}}
+        template block text
+      {{/zf-reveal}}
+    `);
 
-  assert.equal(Ember.$('.reveal-overlay').length, 1);
+    assert.equal($('.reveal-overlay').length, 1);
 
-  this.render(hbs`
-    Hello World
-  `);
+    await render(hbs`
+      Hello World
+    `);
 
-  assert.equal(Ember.$('.reveal-overlay').length, 0);
+    assert.equal($('.reveal-overlay').length, 0);
+  });
 });

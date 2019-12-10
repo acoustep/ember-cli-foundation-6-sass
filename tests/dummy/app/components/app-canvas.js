@@ -1,7 +1,7 @@
-import Ember from "ember";
+import Component from '@ember/component';
 import "foundation-sites";
 
-export default Ember.Component.extend({
+export default Component.extend({
   didInsertElement() {
     this.$().foundation();
   }
