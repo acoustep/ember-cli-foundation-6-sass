@@ -25,7 +25,7 @@ Then, either let the generator add the `app.scss` file, or include the following
 // For foundation-sites <= 6.3.0
 // @import 'foundation';
 // For foundation-sites >= 6.3.0
-@include foundation-everything;
+@include foundation-everything(false);
 ```
 Note - Due to [issue](https://github.com/acoustep/ember-cli-foundation-6-sass/issues/44) introduced by `foundation-sites@6.3.0`, you should use the following in your `app.scss` until the issue resolved.
 ```
